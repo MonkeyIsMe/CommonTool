@@ -3,7 +3,7 @@ package collection
 import (
 	"math"
 
-	"github.com/MonkeyIsMe/MyTool/constant"
+	"github.com/MonkeyIsMe/CommonTool/constant"
 )
 
 // GetListByPage 字符串数组分页

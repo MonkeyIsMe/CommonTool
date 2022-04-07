@@ -7,9 +7,5 @@ const (
 )
 
 const (
-	SystemError = -100001
-)
-
-const (
 	PageSize = 10
 )
