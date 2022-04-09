@@ -1,7 +1,6 @@
 package collection
 
 import (
-	"fmt"
 	"reflect"
 )
 
@@ -22,13 +21,11 @@ func StructToMap(stu interface{}) map[string]interface{} {
 	t := reflect.TypeOf(stu)
 	v := reflect.ValueOf(stu)
 
-	fmt.Println("t=", t)
-	fmt.Println("v=", v)
-
 	var data = make(map[string]interface{})
 
 	for i := 0; i < t.NumField(); i++ {
 		data[t.Field(i).Name] = v.Field(i).Interface()
 	}
+
 	return data
 }

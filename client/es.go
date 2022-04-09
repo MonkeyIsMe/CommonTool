@@ -17,7 +17,8 @@ type EsConfig struct {
 }
 
 type EsClient struct {
-	esCli es.Client
+	esCli  es.Client
+	callee string
 }
 
 // InitEsClient 通过配置文件初始化一个ES的客户端
@@ -68,6 +69,19 @@ func (cli *EsClient) CreateIndexData(ctx context.Context, indexName, indexSettin
 	}
 
 	return nil
+}
+
+// DoRecall 召回
+func (cli *EsClient) DoRecall(ctx context.Context, bq *es.BoolQuery, page, limit int,
+	indexName string) (*es.SearchResult, error) {
+	results, err := cli.esCli.Search().Index(indexName).Query(bq).From(page).Size(limit).Do(ctx)
+
+	if err != nil {
+		log.Fatalf("Search Index err: [+%v]", err)
+		return nil, err
+	}
+
+	return results, nil
 }
 
 // AddMatchQuery 组合ES的查询

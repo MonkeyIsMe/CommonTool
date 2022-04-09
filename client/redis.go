@@ -18,6 +18,7 @@ type RedisConfig struct {
 // RedisProxy redis的proxy
 type RedisProxy struct {
 	redisCli redis.Client
+	callee   string
 }
 
 // NewRedisClient 新建一个redis的client

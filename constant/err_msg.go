@@ -1,9 +1,11 @@
 package constant
 
 const (
-	SystemError = -100001
+	SystemSuccess = 100
+	SystemError   = 101
 )
 
 const (
-	SystemErrMsg = "SystemError"
+	SystemSuccMsg = "SystemSuccess"
+	SystemErrMsg  = "SystemError"
 )

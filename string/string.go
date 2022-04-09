@@ -4,7 +4,6 @@ import (
 	"crypto/md5"
 	"crypto/sha1"
 	"encoding/base64"
-	"encoding/binary"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
@@ -136,22 +135,7 @@ func GetRandomString(n int) string {
 	return string(b)
 }
 
-// GetMD5 生成 md5 数字串
-func GetMD5(raw string) uint64 {
-	h := md5.New()
-	_, _ = io.WriteString(h, raw)
-	md5Val := binary.LittleEndian.Uint64(h.Sum(nil)[0:8])
-	return md5Val
-}
-
-// 生成 md5 哈希
-func GetHexMD5(text string) string {
-	ctx := md5.New()
-	ctx.Write([]byte(text))
-	return hex.EncodeToString(ctx.Sum(nil))
-}
-
-// string转[]byte无拷贝
+// Str2Bytes string转[]byte无拷贝
 func Str2Bytes(s string) []byte {
 	x := (*[2]uintptr)(unsafe.Pointer(&s))
 	h := [3]uintptr{x[0], x[1], x[1]}
@@ -164,7 +148,7 @@ func InterfaceToString(inter interface{}) (string, error) {
 	case string:
 		return inter.(string), nil
 	default:
-		return "", fmt.Errorf("Type Error")
+		return "", fmt.Errorf("type Error")
 	}
 }
 
@@ -174,5 +158,6 @@ func Json2String(d interface{}) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	return string(j), nil
 }
